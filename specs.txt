@@ -1,0 +1,5 @@
+Frontend:
+  Javascript with react?
+  
+Backend:
+  Golang, no backend render, only json.
