@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Link, withRouter } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
-var auth = require('./auth');
+import auth from './auth';
 
 import {
   Form,
@@ -26,7 +26,7 @@ const XilNavbar = withRouter(
 
     getInitialState() {
       return {
-        loggedIn: false
+        loggedIn: auth.loggedIn
       };
     },
 
@@ -65,11 +65,11 @@ const XilNavbar = withRouter(
           <Nav>
             <LinkContainer to="/about"><NavItem eventKey={2}>About</NavItem></LinkContainer>
             <NavDropdown eventKey={3} title="Account" id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1}>Sign out</MenuItem>
+              <MenuItem eventKey={3.1}>Another action</MenuItem>
               <MenuItem eventKey={3.2}>Another action</MenuItem>
               <MenuItem eventKey={3.3}>Something else here</MenuItem>
               <MenuItem divider />
-              <MenuItem eventKey={3.3}>Separated link</MenuItem>
+              <LinkContainer to="/logout"><MenuItem eventKey={3.3}>Sign out</MenuItem></LinkContainer>
             </NavDropdown>
           </Nav>
         </Navbar>);

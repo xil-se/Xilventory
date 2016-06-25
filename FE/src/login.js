@@ -56,7 +56,7 @@ const Login = withRouter(
           <Row>
             <Col>
               <Form horizontal onSubmit={this.handleSubmit}>
-                <FormGroup>
+                <FormGroup >
                   <Col smOffset={2} sm={4}>
                     <h4>&nbsp;
                     { this.state.error &&

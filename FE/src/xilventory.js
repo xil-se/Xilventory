@@ -1,10 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { browserHistory, Router, Route, Link, withRouter } from 'react-router';
-import auth from './auth';
-import XilNavbar from './XilNavbar';
-
-import Login from './login';
 import {
   Form,
   FormControl,
@@ -22,6 +18,10 @@ import {
   MenuItem
 } from 'react-bootstrap';
 
+import auth from './auth';
+import XilNavbar from './XilNavbar';
+import Login from './login';
+import Logout from './logout';
 
 const App = React.createClass({
   getInitialState() {
@@ -79,16 +79,6 @@ const Dashboard = React.createClass({
 const About = React.createClass({
   render() {
     return <h1>About</h1>;
-  }
-});
-
-const Logout = React.createClass({
-  componentDidMount() {
-    auth.logout();
-  },
-
-  render() {
-    return <p>You are now logged out</p>;
   }
 });
 
