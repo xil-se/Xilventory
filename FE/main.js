@@ -1,2 +1,2 @@
-import Xilventory from './src/xilventory.jsx';
+import Xilventory from './src/xilventory.js';
 
