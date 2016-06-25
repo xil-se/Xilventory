@@ -20,9 +20,10 @@ import {
 
 import auth from './auth';
 import About from './about';
+import ItemList from './itemlist';
 import Login from './login';
 import Logout from './logout';
-import ItemList from './itemlist';
+import MainScreen from './mainscreen';
 import Profile from './profile';
 import XilNavbar from './xilnavbar';
 
@@ -45,10 +46,17 @@ const App = React.createClass({
   },
 
   render() {
+    let content;
+    if (this.props.children) {
+      content = this.props.children;
+    } else {
+      content = <MainScreen />;
+    }
+     
     return (
       <div>
         <XilNavbar loggedIn={this.state.loggedIn} />
-        {this.props.children}
+        {content}
       </div>
     );
   }

@@ -32,6 +32,16 @@ var Profile = withRouter(
       return this.state.newPassword === this.state.newPasswordRepeat ? 'success' : 'warning';
     },
 
+    handleSubmit(event) {
+      event.preventDefault();
+
+      this.setState({ 'loggingIn': true, error: false });
+
+      const email = document.getElementById('formEmail').value;
+      const pass = document.getElementById('formPassword').value;
+
+    },
+
     render() {
       let status;
       status = <ListGroupItem bsStyle="success">You rock!</ListGroupItem>;
@@ -50,7 +60,7 @@ var Profile = withRouter(
                     </Col>
                   </Row>
 
-                  <FormGroup controlId="formHorizontalEmail">
+                  <FormGroup controlId="formEmail">
                     <Col componentClass={ControlLabel}>
                       Name
                     </Col>
@@ -97,7 +107,7 @@ var Profile = withRouter(
                     </FormGroup>
                   </Collapse>
 
-                  <FormGroup controlId="formHorizontalPassword">
+                  <FormGroup controlId="formPassword">
                     <Col componentClass={ControlLabel}>
                       Current password
                     </Col>
