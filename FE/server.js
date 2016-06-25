@@ -12,7 +12,7 @@ let server = new WebpackDevServer(webpack(config), {
 
 // Important part. Send down index.html for all requests
 server.use('/', function (req, res) {
-  res.sendFile(path.join(__dirname+'/index.html'));
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 server.listen(8080, '0.0.0.0', function (err, result) {

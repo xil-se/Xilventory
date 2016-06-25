@@ -1,17 +1,17 @@
 .form-horizontal .form-group {
-    margin-right: 0;
-    margin-left: 0;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .form-horizontal .control-label {
-    text-align: center;
+  text-align: center;
 }
 
 .row {
-    margin-right: 0;
-    margin-left: 0;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 html {
-    overflow-y:scroll;
+  overflow-y:scroll;
 }

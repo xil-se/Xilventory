@@ -115,7 +115,7 @@ const Login = withRouter(
                       </Button>
                     </Col>
                     <Col sm={2}>
-                      <Button onClick={()=>console.log(1337)}>
+                      <Button onClick={() => console.log(1337) }>
                         Forgot password
                       </Button>
                     </Col>

@@ -1,12 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import {
-    ProgressBar,
-    Table,
-    Panel,
-    Grid,
-    Row,
-    Col
+  ProgressBar,
+  Table,
+  Panel,
+  Grid,
+  Row,
+  Col
 } from 'react-bootstrap';
 
 import auth from './auth';
@@ -49,50 +49,50 @@ const titles = [
 ];
 
 var ItemList = withRouter(
-    React.createClass({
+  React.createClass({
 
-      getInitialState() {
-        return { items: initialItems };
-      },
+    getInitialState() {
+      return { items: initialItems };
+    },
 
-      render() {
-        return (
-            <Grid>
-                <Row>
-                    <Col>
-                    <h1>Items in the inventory</h1>
-                    <Table striped bordered condensed hover responsive>
-                        <thead>
-                            <tr>
-                                {
-                                    titles.map(function (title) {
-                                      return <th key={title}>{title}</th>;
-                                    })
-                                }
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.state.items.map(function (row, i) {
-                                  return (
-                                        <tr key={i}>
-                                            <td key="0">{row.name}</td>
-                                            <td key="1">{row.description}</td>
-                                            <td key="2">{row.location}</td>
-                                            <td key="3">{row.amount}</td>
-                                            <td key="4">{row.price}</td>
-                                        </tr>
-                                    );
-                                })
-                            }
-                        </tbody>
-                    </Table>
-                    </Col>
-                </Row>
-            </Grid>
-            );
-      }
-    })
+    render() {
+      return (
+        <Grid>
+          <Row>
+            <Col>
+              <h1>Items in the inventory</h1>
+              <Table striped bordered condensed hover responsive>
+                <thead>
+                  <tr>
+                    {
+                      titles.map(function (title) {
+                        return <th key={title}>{title}</th>;
+                      })
+                    }
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    this.state.items.map(function (row, i) {
+                      return (
+                        <tr key={i}>
+                          <td key="0">{row.name}</td>
+                          <td key="1">{row.description}</td>
+                          <td key="2">{row.location}</td>
+                          <td key="3">{row.amount}</td>
+                          <td key="4">{row.price}</td>
+                        </tr>
+                      );
+                    })
+                  }
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
+        </Grid>
+      );
+    }
+  })
 );
 
 module.exports = ItemList;
