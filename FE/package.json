@@ -4,7 +4,7 @@
   "description": "Xilventory frontend",
   "main": "index.js",
   "scripts": {
-    "start": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors",
+    "start": "node server.js",
     "test": "echo lol",
     "build": "node node_modules/webpack/bin/webpack.js --config webpack.config.js"
   },
