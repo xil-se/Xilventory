@@ -13,7 +13,13 @@ import {
   Button,
   Row,
   Grid,
-  Label
+  Panel,
+  Collapse,
+  Fade,
+  Well,
+  Label,
+  ProgressBar,
+  Alert
 } from 'react-bootstrap';
 
 const Login = withRouter(
@@ -21,17 +27,22 @@ const Login = withRouter(
 
     getInitialState() {
       return {
-        error: false
+        error: false,
+        loggingIn: false
       };
     },
 
     handleSubmit(event) {
       event.preventDefault();
 
-      const email = formHorizontalEmail.value;
-      const pass = formHorizontalPassword.value;
+      this.setState({ 'loggingIn': true, error: false });
+
+      const email = document.getElementById('formEmail').value;
+      const pass = document.getElementById('formPassword').value;
 
       auth.login(email, pass, (loggedIn) => {
+        this.setState({ 'loggingIn': false });
+
         if (!loggedIn)
           return this.setState({ error: true });
 
@@ -46,59 +57,72 @@ const Login = withRouter(
     },
 
     render() {
+      let wrongCredentials;
+      if (this.state.error) {
+        wrongCredentials = (
+          <Alert bsStyle="danger">
+            <strong>Cold solder!</strong> Wrong credentials, hacker!
+          </Alert>);
+      }
+
+      let loggingIn;
+      if (this.state.loggingIn) {
+        loggingIn = (
+          <div>
+            <p/>
+            <ProgressBar active now={100} />
+          </div>);
+      }
+
       return (
         <Grid>
           <Row>
-            <Col>
-              <h3>Please sign in</h3>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Form horizontal onSubmit={this.handleSubmit}>
-                <FormGroup >
-                  <Col smOffset={2} sm={4}>
-                    <h4>&nbsp;
-                    { this.state.error &&
-                      <Label bsStyle="warning">Wrong credentials</Label>
-                    }
-                    </h4>
-                    
-                  </Col>
-                </FormGroup>
+            <Col sm={10} md={6}>
+              <Panel header="Sign in" bsStyle="primary">
+                <form onSubmit={this.handleSubmit}>
 
-                <FormGroup controlId="formHorizontalEmail">
-                  <Col componentClass={ControlLabel} sm={2}>
-                    Email
-                  </Col>
-                  <Col sm={4}>
-                    <FormControl onChange={(e) => console.log(e.target.value) } ref="email" type="email" placeholder="Email" defaultValue="example@xil.se" />
-                  </Col>
-                </FormGroup>
+                  <Row>
+                    <Col>
+                      <Collapse transitionAppear={true} in={(this.state.error || this.state.loggingIn) }>
+                        <div>
+                          {wrongCredentials}
+                          {loggingIn}
+                        </div>
+                      </Collapse>
+                    </Col>
+                  </Row>
 
-                <FormGroup controlId="formHorizontalPassword">
-                  <Col componentClass={ControlLabel} sm={2}>
-                    Password
-                  </Col>
-                  <Col sm={4}>
-                    <FormControl ref="password" type="password" placeholder="Password" defaultValue="1337" />
-                  </Col>
-                </FormGroup>
+                  <FormGroup controlId="formEmail">
+                    <ControlLabel>Email</ControlLabel>
+                    <FormControl type="email" placeholder="Email" defaultValue="example@xil.se" />
+                  </FormGroup>
 
-                <FormGroup>
-                  <Col smOffset={2} sm={4}>
-                    <Checkbox>Remember me</Checkbox>
-                  </Col>
-                </FormGroup>
+                  <FormGroup controlId="formPassword">
+                    <ControlLabel>Password</ControlLabel>
+                    <FormControl type="password" placeholder="Password" defaultValue="1337" />
+                  </FormGroup>
 
-                <FormGroup>
-                  <Col smOffset={2} sm={4}>
-                    <Button type="submit">
-                      Sign in
-                    </Button>
-                  </Col>
-                </FormGroup>
-              </Form>
+                  <FormGroup>
+                    <Col>
+                      <Checkbox>Remember me</Checkbox>
+                    </Col>
+                  </FormGroup>
+
+                  <FormGroup>
+                    <Col sm={2}>
+                      <Button bsStyle="primary" type="submit">
+                        Sign in
+                      </Button>
+                    </Col>
+                    <Col sm={2}>
+                      <Button onClick={()=>console.log(1337)}>
+                        Forgot password
+                      </Button>
+                    </Col>
+                  </FormGroup>
+
+                </form>
+              </Panel>
             </Col>
           </Row>
         </Grid>

@@ -45,5 +45,5 @@ function pretendRequest(email, pass, cb) {
     } else {
       cb({ authenticated: false });
     }
-  }, 0);
+  }, 1000);
 }

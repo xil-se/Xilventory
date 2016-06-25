@@ -26,14 +26,14 @@ const XilNavbar = withRouter(
 
     getInitialState() {
       return {
-        loggedIn: auth.loggedIn
+        loggedIn: auth.loggedIn()
       };
     },
 
     componentDidMount() {
     },
 
-    componentWillReceiveProps (props) {
+    componentWillReceiveProps(props) {
       this.setState({
         loggedIn: props.loggedIn
       });
@@ -48,8 +48,8 @@ const XilNavbar = withRouter(
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <LinkContainer to="/login"><NavItem eventKey={1}>Sign in</NavItem></LinkContainer>
-            <LinkContainer to="/about"><NavItem eventKey={2}>About</NavItem></LinkContainer>
+            <LinkContainer to="/about"><NavItem eventKey={1}>About</NavItem></LinkContainer>
+            <LinkContainer to="/login"><NavItem eventKey={2}>Sign in</NavItem></LinkContainer>
           </Nav>
         </Navbar>);
     },
@@ -63,9 +63,10 @@ const XilNavbar = withRouter(
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <LinkContainer to="/about"><NavItem eventKey={2}>About</NavItem></LinkContainer>
+            <LinkContainer to="/about"><NavItem eventKey={1}>About</NavItem></LinkContainer>
+            <LinkContainer to="/itemlist"><NavItem eventKey={2}>Browse</NavItem></LinkContainer>
             <NavDropdown eventKey={3} title="Account" id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1}>Another action</MenuItem>
+              <LinkContainer to="/profile"><MenuItem eventKey={3.1}>Profile</MenuItem></LinkContainer>
               <MenuItem eventKey={3.2}>Another action</MenuItem>
               <MenuItem eventKey={3.3}>Something else here</MenuItem>
               <MenuItem divider />

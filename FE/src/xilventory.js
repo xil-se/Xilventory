@@ -19,9 +19,12 @@ import {
 } from 'react-bootstrap';
 
 import auth from './auth';
-import XilNavbar from './XilNavbar';
+import About from './about';
 import Login from './login';
 import Logout from './logout';
+import ItemList from './itemlist';
+import Profile from './profile';
+import XilNavbar from './xilnavbar';
 
 const App = React.createClass({
   getInitialState() {
@@ -43,42 +46,11 @@ const App = React.createClass({
 
   render() {
     return (
-      <Grid>
-        <Row>
-          <Col>
-            <XilNavbar loggedIn={this.state.loggedIn} />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            {this.props.children}
-          </Col>
-        </Row>
-      </Grid>
-
-    );
-  }
-});
-
-
-const Dashboard = React.createClass({
-  render() {
-    const token = auth.getToken();
-
-    return (
       <div>
-        <h1>Dashboard</h1>
-        <p>You made it!</p>
-        <p>{token}</p>
+        <XilNavbar loggedIn={this.state.loggedIn} />
+        {this.props.children}
       </div>
     );
-  }
-});
-
-
-const About = React.createClass({
-  render() {
-    return <h1>About</h1>;
   }
 });
 
@@ -97,7 +69,8 @@ render((
       <Route path="login" component={Login} />
       <Route path="logout" component={Logout} />
       <Route path="about" component={About} />
-      <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
+      <Route path="itemlist" component={ItemList} onEnter={requireAuth} />
+      <Route path="profile" component={Profile} onEnter={requireAuth} />
     </Route>
   </Router>
 ), document.getElementById('root'));
