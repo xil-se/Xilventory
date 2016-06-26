@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "test": "echo lol",
-    "build": "node node_modules/webpack/bin/webpack.js -p --config webpack.config.js",
+    "build": "node node_modules/webpack/bin/webpack.js -p --bail --config webpack.config.js",
+    "dist": "./dist.sh",
     "lint": "node node_modules/eslint/bin/eslint.js . --fix"
   },
   "author": "",

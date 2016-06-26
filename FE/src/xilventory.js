@@ -52,7 +52,7 @@ const App = React.createClass({
     } else {
       content = <MainScreen />;
     }
-     
+
     return (
       <div>
         <XilNavbar loggedIn={this.state.loggedIn} />
