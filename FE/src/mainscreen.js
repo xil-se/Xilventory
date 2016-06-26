@@ -18,7 +18,7 @@ var About = withRouter(
         <Grid>
           <Row>
             <Col>
-                <img src="./assets/logo.svg" />
+              <img src="./assets/logo.svg" />
             </Col>
           </Row>
         </Grid>
