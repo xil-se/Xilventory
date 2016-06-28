@@ -1,2 +1,2 @@
 language: node_js
-script: cd FE && npm install && npm run lint && ./dist.sh
+script: (cd FE && npm install && npm run lint && ./dist.sh) && (cd backend && make)
