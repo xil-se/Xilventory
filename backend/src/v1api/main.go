@@ -9,17 +9,13 @@ import (
 )
 
 type Now struct {
-	Now string `db:"now"`
+	Time string `db:"now"`
 }
 
-func Hello(context web.C, w http.ResponseWriter, r *http.Request) {
+func DbTime(context web.C, w http.ResponseWriter, r *http.Request) {
 
 	now := []Now{}
 
-	context.Env["db"].(*sqlx.DB).Select(&now, "SELECT now()")
-	fmt.Fprintf(w, "%v", now[0])
-
-	fmt.Fprintf(w, "Hello, %s!", context.URLParams["name"])
-	fmt.Fprintf(w, "Hello, %v!", now)
-
+	context.Env["db"].(*sqlx.DB).Select(&now, "SELECT now() as now")
+	fmt.Fprintf(w, "Database time is: %s", now[0].Time)
 }
