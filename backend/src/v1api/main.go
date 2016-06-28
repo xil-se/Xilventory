@@ -13,9 +13,9 @@ type Now struct {
 }
 
 func DbTime(context web.C, w http.ResponseWriter, r *http.Request) {
-
 	now := []Now{}
 
 	context.Env["db"].(*sqlx.DB).Select(&now, "SELECT now() as now")
 	fmt.Fprintf(w, "Database time is: %s", now[0].Time)
 }
+

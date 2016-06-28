@@ -35,7 +35,7 @@ func initializeDatabase(url string) *sqlx.DB {
 
 func enforceContentType(c *web.C, h http.Handler) http.Handler {
 	fn := func(w http.ResponseWriter, r *http.Request) {
-		contentType := r.Header.Get("Content-Type")
+		contentType := r.Header.Get("Accept")
 		w.Header().Set("Content-Type", "application/vnd.api+json")
 
 		if !strings.HasPrefix(contentType, "application/vnd.api+json") {
@@ -67,6 +67,7 @@ func main() {
 	apimux.Use(enforceContentType)
 	apimux.Use(DBContext)
 	apimux.Get("/api/v1/time", v1api.DbTime)
+
 	goji.Serve()
 
 }
