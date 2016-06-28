@@ -1,6 +1,7 @@
 language: node_js
+
 cache:
   directories:
     - FE/node_modules
-    
+
 script: (cd backend && make) && (cd FE && npm install && npm run lint && ./dist.sh)
