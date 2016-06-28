@@ -1,2 +1,6 @@
 language: node_js
-script: (cd FE && npm install && npm run lint && ./dist.sh) && (cd backend && make)
+cache:
+  directories:
+    - node_modules
+    
+script: (cd backend && make) && (cd FE && npm install && npm run lint && ./dist.sh)
