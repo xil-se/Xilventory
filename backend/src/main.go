@@ -67,6 +67,8 @@ func main() {
 	apimux.Use(enforceContentType)
 	apimux.Use(DBContext)
 	apimux.Get("/api/v1/time", v1api.DbTime)
+  apimux.Get("/api/v1/items", v1api.ListItems)
+  
 
 	goji.Serve()
 
