@@ -8,7 +8,7 @@ REVISION=$(shell git rev-parse --short HEAD)
 
 
 all:
-	GOPATH=$(VENDORPATH):${PWD} $(GOC) build -ldflags="-X main.version=${VERSION}-${REVISION}" -o  ./bin/backend ./src/main.go
+	GOPATH=$(VENDORPATH):${PWD} $(GOC) build -ldflags="-X main.version=${VERSION}-${REVISION}" -o  ./bin/backend ./src/*.go
 
 run: all
 	./bin/backend

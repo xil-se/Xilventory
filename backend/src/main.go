@@ -63,12 +63,15 @@ func DBContext(c *web.C, h http.Handler) http.Handler {
 func main() {
 
 	apimux := web.New()
+	goji.NotFound(NotFound) // Why you no work?
+
 	goji.Handle("/api/v1/*", apimux)
 	apimux.Use(enforceContentType)
 	apimux.Use(DBContext)
 	apimux.Get("/api/v1/time", v1api.DbTime)
-  apimux.Get("/api/v1/items", v1api.ListItems)
-  
+
+	apimux.Get("/api/v1/items", v1api.ListItems)
+	apimux.Get("/api/v1/items/:id", v1api.ListItems)
 
 	goji.Serve()
 
