@@ -15,11 +15,17 @@ type Now struct {
 }
 
 type Item struct {
-	Id       int                 `json:"itemid"`
+	Id       int                 `json:"item_id"`
 	Location sqlx_types.JSONText `json:"location"`
 	Price    int                 `json:"price"`
 	Quantity int                 `json:"quantity"`
 	Name     string              `json:"name"`
+}
+
+type Location struct {
+	Id       int                 `json:"location_id"`
+	Name     string              `json:"name"`
+	Location sqlx_types.JSONText `json:"location"`
 }
 
 func DbTime(context web.C, w http.ResponseWriter, r *http.Request) {
@@ -50,10 +56,21 @@ func ListItems(context web.C, w http.ResponseWriter, r *http.Request) {
 		http.Error(w, http.StatusText(404), 404)
 	}
 
-	//if err != nil {
-	//  fmt.Fprintf(w, "{\"error\": \"Something went poop\"")
-	//}
-
-	json, _ := json.MarshalIndent(items, "", "\t")
+	json, err := json.MarshalIndent(items, "", "\t")
 	fmt.Fprintf(w, "%s", json)
+}
+
+func ListLocations(context web.C, w http.ResponseWriter, r *http.Request) {
+	db := context.Env["db"].(*sqlx.DB)
+	locations := []Location{}
+
+	err := db.Select(&locations, "SELECT id, get_location(parent_id) as location, name FROM locations WHERE parent_id > 0")
+
+	if err != nil {
+		http.Error(w, "{\"error\" : \"Something went wrong\"}", 500)
+	}
+
+	json, err := json.MarshalIndent(locations, "", "\t")
+	fmt.Fprintf(w, "%s", json)
+
 }
