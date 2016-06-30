@@ -7,6 +7,7 @@ import (
 	sqlx_types "github.com/jmoiron/sqlx/types"
 	_ "github.com/lib/pq"
 	"github.com/zenazn/goji/web"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -26,6 +27,11 @@ type Location struct {
 	Id       int                 `json:"location_id"`
 	Name     string              `json:"name"`
 	Location sqlx_types.JSONText `json:"location"`
+}
+
+type LocationJsonApi struct {
+	ParentId int    `json:"parent_id"`
+	Name     string `json:"name"`
 }
 
 func DbTime(context web.C, w http.ResponseWriter, r *http.Request) {
@@ -73,4 +79,32 @@ func ListLocations(context web.C, w http.ResponseWriter, r *http.Request) {
 	json, err := json.MarshalIndent(locations, "", "\t")
 	fmt.Fprintf(w, "%s", json)
 
+}
+
+func AddLocation(context web.C, w http.ResponseWriter, r *http.Request) {
+	db := context.Env["db"].(*sqlx.DB)
+	_ = db
+
+	// Is this how you do it?
+	var req LocationJsonApi
+
+	body, _ := ioutil.ReadAll(r.Body)
+	err := json.Unmarshal(body, &req)
+
+	if err != nil {
+		http.Error(w, "{\"error\" : \"Something went wrong\"}", 500)
+		return
+	}
+
+	if req.Name == "" {
+		http.Error(w, "{\"error\" : \"Name missing\"}", 400)
+		return
+	}
+
+	if req.ParentId <= 0 {
+		http.Error(w, "{\"error\" : \"Parent id missing or is zero\"}", 400)
+		return
+	}
+
+	fmt.Fprintf(w, "%s %v", body, req)
 }

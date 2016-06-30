@@ -74,7 +74,7 @@ func main() {
 	apimux.Get("/api/v1/items/:id", v1api.ListItems)
 
 	apimux.Get("/api/v1/locations", v1api.ListLocations)
-
+	apimux.Post("/api/v1/locations", v1api.AddLocation)
 
 	goji.Serve()
 
