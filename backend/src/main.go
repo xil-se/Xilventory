@@ -6,7 +6,7 @@ import (
 	_ "github.com/lib/pq"
 	"github.com/zenazn/goji"
 	"github.com/zenazn/goji/web"
-	"github.com/BurntSushi/toml"
+	_ "github.com/BurntSushi/toml"
 	"log"
 	"net/http"
 	"strings"
