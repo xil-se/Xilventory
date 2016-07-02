@@ -3,12 +3,13 @@ package v1api
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"net/http"
+
 	"github.com/jmoiron/sqlx"
 	sqlx_types "github.com/jmoiron/sqlx/types"
 	_ "github.com/lib/pq"
 	"github.com/zenazn/goji/web"
-	"io/ioutil"
-	"net/http"
 )
 
 type Now struct {
