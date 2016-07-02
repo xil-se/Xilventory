@@ -1,5 +1,14 @@
 language: node_js
 
+machine:
+  environment:
+    GODIST: "go1.6.linux-amd64.tar.gz"
+  post:
+    - mkdir -p download
+    - test -e download/$GODIST || curl -o download/$GODIST https://storage.googleapis.com/golang/$GODIST
+    - sudo rm -rf /usr/local/go
+    - sudo tar -C /usr/local -xzf download/$GODIST
+
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y debhelper golang
@@ -7,6 +16,7 @@ before_install:
 cache:
   directories:
     - FE/node_modules
+    - ~/download
 
 script: 
   - (go version)
