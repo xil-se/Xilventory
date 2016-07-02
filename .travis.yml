@@ -1,8 +1,5 @@
 language: node_js
 
-go:
-  - 1.6
-
 cache:
   directories:
     - FE/node_modules
