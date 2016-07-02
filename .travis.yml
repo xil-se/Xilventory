@@ -8,8 +8,8 @@ cache:
     - FE/node_modules
 
 script: 
-  go version
-  (cd backend && make)
-  echo "Node version: " && node -v
-  echo "NPM version: " && npm -v
-  (cd FE && npm install && npm run lint && ./dist.sh)
+  - go version
+  - (cd backend && make)
+  - echo "Node version: " && node -v
+  - echo "NPM version: " && npm -v
+  - (cd FE && npm install && npm run lint && ./dist.sh)
