@@ -10,7 +10,7 @@ cache:
 
 script: 
   - (go version)
-  - (cd backend && dpkg-buildpackage -uc)
+  - (cd backend && dpkg-buildpackage -uc -us)
   - (echo "Node version:" && node -v)
   - (echo "NPM version:" && npm -v)
   - (cd FE && npm install && npm run lint && ./dist.sh)
