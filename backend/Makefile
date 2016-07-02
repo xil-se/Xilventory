@@ -19,3 +19,7 @@ get:
 	GOPATH=$(VENDORPATH) $(GOC) get -d -v github.com/jmoiron/sqlx
 	GOPATH=$(VENDORPATH) $(GOC) get -d -v github.com/BurntSushi/toml
 	find _vendor/src/ -depth \( -name ".git" -or -name ".svn" -or -name ".hg" -or -name ".bzr" \) -exec rm -rf {} \;
+
+
+install:
+	install -g 0 -o 0 --mode 0755 bin/backend $(DESTDIR)/usr/sbin/

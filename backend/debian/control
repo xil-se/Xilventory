@@ -1,0 +1,11 @@
+Source: xilventory
+Section: web
+Priority: optional
+Maintainer: Simon Vikstrom <simon@xil.se>
+Build-Depends:  debhelper (>= 7.0), golang
+Standards-Version: 3.7.2
+
+Package: xilventory
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: nope
