@@ -1,7 +1,15 @@
 language: node_js
 
+go:
+  - 1.6
+
 cache:
   directories:
     - FE/node_modules
 
-script: (cd backend && make) && (cd FE && npm install && npm run lint && ./dist.sh)
+script: 
+  go version
+  (cd backend && make)
+  echo "Node version: " && node -v
+  echo "NPM version: " && npm -v
+  (cd FE && npm install && npm run lint && ./dist.sh)
