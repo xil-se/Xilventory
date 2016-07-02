@@ -81,6 +81,10 @@ func ListLocations(context web.C, w http.ResponseWriter, r *http.Request) {
 
 }
 
+func Dummy(context web.C, w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Weeeooo")
+}
+
 func AddLocation(context web.C, w http.ResponseWriter, r *http.Request) {
 	db := context.Env["db"].(*sqlx.DB)
 	_ = db

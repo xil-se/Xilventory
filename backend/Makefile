@@ -17,4 +17,5 @@ get:
 	GOPATH=$(VENDORPATH) $(GOC) get -d -v github.com/lib/pq
 	GOPATH=$(VENDORPATH) $(GOC) get -d -v github.com/zenazn/goji
 	GOPATH=$(VENDORPATH) $(GOC) get -d -v github.com/jmoiron/sqlx
+	GOPATH=$(VENDORPATH) $(GOC) get -d -v github.com/BurntSushi/toml
 	find _vendor/src/ -depth \( -name ".git" -or -name ".svn" -or -name ".hg" -or -name ".bzr" \) -exec rm -rf {} \;

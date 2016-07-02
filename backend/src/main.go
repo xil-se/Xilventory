@@ -6,6 +6,7 @@ import (
 	_ "github.com/lib/pq"
 	"github.com/zenazn/goji"
 	"github.com/zenazn/goji/web"
+	"github.com/BurntSushi/toml"
 	"log"
 	"net/http"
 	"strings"
@@ -60,6 +61,8 @@ func DBContext(c *web.C, h http.Handler) http.Handler {
 	return http.HandlerFunc(fn)
 }
 
+
+
 func main() {
 
 	apimux := web.New()
@@ -75,6 +78,7 @@ func main() {
 
 	apimux.Get("/api/v1/locations", v1api.ListLocations)
 	apimux.Post("/api/v1/locations", v1api.AddLocation)
+
 
 	goji.Serve()
 
